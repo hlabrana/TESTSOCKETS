@@ -8,6 +8,7 @@ package sockets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -60,7 +61,8 @@ public class Sockets implements Runnable {
         
         try {
             //CLIENTE
-            Socket socketcliente = new Socket(ipM2,Integer.parseInt(portM2));
+            InetAddress addr = InetAddress.getByName(ipM2);
+            Socket socketcliente = new Socket(addr,Integer.parseInt(portM2));
             DataOutputStream data = new DataOutputStream(socketcliente.getOutputStream());
             data.writeUTF(mensaje);
             data.close();
