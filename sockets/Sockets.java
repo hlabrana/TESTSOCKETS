@@ -54,7 +54,7 @@ public class Sockets implements Runnable {
         
         Runnable subproceso = new Sockets(Integer.parseInt(portM1),Integer.parseInt(portM2),ipM1,ipM2);
         new Thread(subproceso).start();
-        
+	while(true){        
         System.out.print("\n Ingrese mensaje a enviar: ");
         Scanner in5 = new Scanner(System.in);
         String mensaje = in5.nextLine();
@@ -69,6 +69,7 @@ public class Sockets implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(Sockets.class.getName()).log(Level.SEVERE, null, ex);
         }
+	}
         
         
     }
@@ -81,7 +82,7 @@ public class Sockets implements Runnable {
                 Socket socket = servidor.accept();
                 DataInputStream data = new DataInputStream(socket.getInputStream());
                 String mensaje = data.readUTF();
-                System.out.println("Mensaje Recibido: "+mensaje);
+                System.out.println("\nMensaje Recibido: "+mensaje+"\n");
                 socket.close();
             }
         } catch (IOException ex) {
